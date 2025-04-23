@@ -1,97 +1,171 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# README para Plantilla React Native
 
-# Getting Started
+# Plantilla React Native Avanzada
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Plantilla base para proyectos React Native con configuración inicial lista para producción, incluyendo navegación, estado global y persistencia.
 
-## Step 1: Start Metro
+## 📦 Características Principales
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- ⚛️ React Native 0.79 + React 19
+- 🧭 React Navigation (Native Stack)
+- 🏪 Redux Toolkit + Redux Persist
+- 🔐 Async Storage para persistencia
+- 🛡️ Safe Area Context integrado
+- ✅ TypeScript preconfigurado
+- 🧹 ESLint + Prettier
+- 🧪 Jest para testing
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## 🚀 Instalación
 
-```sh
-# Using npm
-npm start
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/rnTemplateApp.git
+   ```
+2. Instalar dependencias:
+   ```bash
+   cd rnTemplateApp && npm install
+   ```
+3. Para iOS (opcional):
+   ```bash
+   cd ios && pod install && cd ..
+   ```
 
-# OR using Yarn
-yarn start
+## 🏗️ Estructura del Proyecto
+
+```
+/src
+  ├── Config
+  │   ├── AppConfig.ts      # Configuración global de la app
+  │   ├── ReduxStorage.ts   # Configuración de persistencia
+  │   └── Theme.ts          # Configuración de estilos/theme
+  │
+  ├── Navigation
+  │   ├── AppNavigator.tsx  # Navegador principal
+  │   ├── types.ts          # Tipos para navegación
+  │   └── params.ts         # Parámetros de rutas
+  │
+  ├── Presentation
+  │   ├── Components        # Componentes UI reutilizables
+  │   │   ├── Button
+  │   │   │   ├── Button.tsx
+  │   │   │   ├── Button.styles.ts
+  │   │   │   └── Button.types.ts
+  │   │   ├── Input         # Ejemplo de otro componente
+  │   │   └── index.ts      # Barrel file para exports
+  │   │
+  │   └── Screens           # Pantallas de la aplicación
+  │       ├── Home
+  │       │   ├── HomeScreen.tsx
+  │       │   ├── Home.styles.ts
+  │       │   ├── Home.hooks.ts
+  │       │   └── Home.types.ts
+  │       ├── Details
+  │       │   ├── DetailsScreen.tsx
+  │       │   └── ...
+  │       └── index.ts       # Barrel file para exports
+  │
+  ├── Store
+  │   ├── slice             # Slices de Redux Toolkit
+  │   │   ├── authSlice.ts  # Ejemplo: autenticación
+  │   │   ├── appSlice.ts   # Estado general de la app
+  │   │   └── ...
+  │   ├── store.ts          # Configuración del store
+  │   └── hooks.ts          # Hooks de Redux (useAppDispatch, etc.)
+  │
+  ├── assets                # Recursos estáticos
+  │   ├── fonts
+  │   ├── images
+  │   └── animations
+  │
+  ├── hooks                 # Custom hooks globales
+  │   ├── useFetch.ts       # Hook para llamadas API
+  │   └── useTheme.ts       # Hook para manejo de tema
+  │
+  ├── services              # Lógica de API/services
+  │   ├── api.ts            # Configuración de axios/fetch
+  │   ├── authService.ts    # Servicio de autenticación
+  │   └── ...
+  │
+  ├── types                 # Tipos globales
+  │   ├── app.d.ts          # Tipos de la aplicación
+  │   └── navigation.d.ts   # Tipos de navegación extendidos
+  │
+  └── utils                 # Utilidades/helpers
+      ├── formatters.ts     # Funciones de formato
+      ├── validators.ts     # Funciones de validación
+      └── ...
 ```
 
-## Step 2: Build and run your app
+## 🛠 Comandos Útiles
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+| Comando         | Descripción                          |
+|-----------------|--------------------------------------|
+| `npm start`     | Inicia el servidor Metro             |
+| `npm run android` | Ejecuta la app en Android           |
+| `npm run ios`   | Ejecuta la app en iOS (requiere Mac) |
+| `npm run lint`  | Ejecuta ESLint                       |
+| `npm run test`  | Ejecuta pruebas con Jest             |
 
-### Android
+## 🔍 Qué le falta a la plantilla
 
-```sh
-# Using npm
-npm run android
+Basado en tu `package.json`, aquí hay algunas mejoras recomendadas:
 
-# OR using Yarn
-yarn android
+### 1. Internacionalización (i18n)
+```bash
+yarn add react-native-location
 ```
 
-### iOS
+### 2. Manejo de errores globales
+- Considera añadir un Error Boundary
+- Integrar un servicio como Sentry:
+  ```bash
+  npm install @sentry/react-native
+  ```
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+### 5. Componentes UI comunes
+```bash
+npm install react-native-vector-icons
+npm install react-native-svg
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+### 7. Variables de entorno
+```bash
+npm install react-native-config
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+### 8. Animaciones
+```bash
+npm install lottie-react-native
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### 9. Documentación adicional recomendada
+- Añadir un `CHANGELOG.md`
+- Crear un archivo `CONTRIBUTING.md`
+- Configurar GitHub Actions para CI/CD
+- Agregar un `.env.example`
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 📝 Configuración Recomendada
 
-## Step 3: Modify your app
 
-Now that you have successfully run the app, let's make changes!
+## 🤝 Contribución
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Si deseas contribuir a mejorar esta plantilla:
+1. Haz fork del proyecto
+2. Crea tu branch (`git checkout -b feature/nueva-caracteristica`)
+3. Haz commit de tus cambios (`git commit -m 'Añadir nueva característica'`)
+4. Haz push al branch (`git push origin feature/nueva-caracteristica`)
+5. Abre un Pull Request
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## 📄 Licencia
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+MIT
+```
 
-## Congratulations! :tada:
+## Pasos siguientes recomendados
 
-You've successfully run and modified your React Native App. :partying_face:
+3. **Configurar CI/CD** básico con GitHub Actions
+4. **Crear documentación adicional** sobre:
+   - Cómo añadir nuevas pantallas
+   - Cómo crear nuevos reducers
+   - Convenciones de código
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
